@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo
+    environment:
+      - MONGODB_URL:mongodb://localhost:27018/nest_grpc
+    ports: [27018]
+    

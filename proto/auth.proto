@@ -1,0 +1,45 @@
+syntax = "proto3";
+
+package auth;
+
+service UserService {
+    rpc CreateUser(CreateUserDto) returns (User) {}
+    rpc FindAllUsers(Emtpy) returns (Users) {}
+    rpc FindOneUser(FindOneUserDto) returns (User) {}
+    rpc UpdateUser(UpdateUserDto) returns (ResultDto) {}
+    rpc RemoveUser(FindOneUserDto) returns (ResultDto) {}
+    rpc QueryUser(stream PaginationDto) returns (stream Users) {}
+}
+
+message Emtpy {} ;
+message PaginationDto {
+    int32 page = 1;
+    int32 skip = 2;
+}
+message UpdateUserDto {
+    string id = 1;
+    email string = 2;
+}
+message FindOneUserDto {
+    string id = 1;
+}
+message ResultDto {
+    string msg = 1;
+}
+message Users {
+    repeated User users = 1;
+}
+message CreateUserDto {
+    string username = 1;
+    string password = 2;
+    int32 age = 3;
+}
+message User {
+    string id = 1;
+    string username = 2;
+    string password = 3;
+    int32 age = 4;
+    bool subscribed = 5;
+    string email = 6;
+    string phone = 7;
+}
